@@ -59,7 +59,7 @@
   "license": "MIT",
   "main": "n/a",
   "scripts": {
-    "start": "npm run serve",
+    "start": "yarn serve",
     "build": "gatsby build --prefix-paths",
     "format": "prettier --write \"src/**/*.{js,jsx,css,json}\"",
     "lint": "eslint --fix \"src/**/*.{js,jsx}\"",
