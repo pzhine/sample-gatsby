@@ -1,56 +1,146 @@
-## Getting Started
+# gatsby-gitbook-starter
 
-We provide a sample app using Gatsby that you can deploy on App Platform. These steps will get this sample application running for you using App Platform.
+Kick off your project with this starter to create a powerful/flexible docs/tutorial web apps.
 
-**Note: Following these steps may result in charges for the use of DigitalOcean services.**
+![gatsby-gitbook-starter](https://graphql-engine-cdn.hasura.io/learn-hasura/gatsby-gitbook-starter/assets/documentation_app_blog.png)
 
-### Requirements
+## Motivation
 
-* You need a DigitalOcean account. If you don't already have one, you can sign up at https://cloud.digitalocean.com/registrations/new.
+We wanted to create a [GraphQL tutorial](https://learn.hasura.io) series. The content would be written by developers for various languages/frameworks and what better than writing it in Markdown! And since this is a tutorial series we also needed rich embeds, syntax highlighting and more customisations.
 
-## Deploying the App
+We also wanted to serve these tutorials in sub paths of [learn.hasura.io](https://learn.hasura.io). To serve all these requirements, we decided to use Gatsby + MDX (Markdown + JSX) to extend markdown and used a neat consistent theme like the one at [GitBook](https://www.gitbook.com) and deployed as docker containers.
 
-Click this button to deploy the app to the DigitalOcean App Platform. If you are not logged in, you will be prompted to log in with your DigitalOcean account.
+## 🔥 Features
+- Write using Markdown / [MDX](https://github.com/mdx-js/mdx)
+- GitBook style theme
+- Syntax Highlighting using Prism [`Bonus`: Code diff highlighting]
+- Search Integration with Algolia
+- Progressive Web App, Works Offline
+- Google Analytics Integration
+- Automatically generated sidebar navigation, table of contents, previous/next
+- Dark Mode toggle
+- Edit on Github
+- Fully customisable
+- Rich embeds and live code editor using MDX
+- Easy deployment: Deploy on Netlify / Now.sh / Docker
 
-[![Deploy to DigitalOcean](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/digitalocean/sample-gatsby/tree/main)
+## 🔗 Live Demo
 
-Using this button disables the ability to automatically re-deploy your app when pushing to a branch or tag in your repository as you are using this repo directly.
+Here's a [live demo](https://learn.hasura.io/graphql/react)
 
-If you want to automatically re-deploy your app, [fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) the GitHub repository to your account so that you have a copy of it stored to the cloud. Click the **Fork** button in the GitHub repository and follow the on-screen instructions.
+## 🚀 Quickstart
 
-After forking the repo, you should now be viewing this README in your own GitHub org (e.g. `https://github.com/<your-org>/sample-gatsby`). To deploy the new repo, visit https://cloud.digitalocean.com/apps and click **Create App**. Then, click **GitHub**, select the repository you created and select the `main` branch. App Platform will inspect the code, automatically detect the kind of component to create, and use the correct buildpack to create and deploy a container.
+Get started by running the following commands:
 
-After clicking the **Deploy to DigitalOcean** button or completing the instructions above to fork the repo, follow these steps:
+```
+$ git clone git@github.com:hasura/gatsby-gitbook-starter.git
+$ cd gatsby-gitbook-starter
+$ npm install
+$ npm start
+```
 
-1. Configure the app such as specifying HTTP routes, environment variables or adding a database.
-1. Provide a name for your app and select which region you want to deploy your app to and click **Next**. The closest region to you should be selected by default. All App Platform apps are routed through a global CDN. So this will not affect your app performance, unless it needs to talk to external services.
-1. On the following screen, leave all the fields as they are and click **Next**.
-1. Confirm your **Plan** settings and how many containers you want to launch and click **Launch Basic/Pro App**.
-1. You should see a "Building..." progress indicator. You can click **View Logs** to see more details of the build.
-1. It can take a few minutes for the build to finish, but you can follow the progress in the **Deployments** tab.
-1. Once the build completes successfully, click the **Live App** link in the header and you should see your running application in a new tab, displaying the home page.
+Visit `http://localhost:8000/` to view the app.
 
-### Making Changes to Your App
+## 🔧 Configure
 
-If you followed the steps to fork the repo and used your own copy when deploying the app, you can push changes to your fork and see App Platform automatically re-deploy the update to your app. During these automatic deployments, your application will never pause or stop serving request because App Platform offers zero-downtime deployments.
+Write markdown files in `content` folder.
 
-Here's an example code change you can make for this app:
+Open `config.js` for templating variables. Broadly configuration is available for `gatsby`, `header`, `sidebar` and `siteMetadata`.
 
-1. Edit `src/pages/index.js` and replace "Hi people" with a different greeting
-1. Commit the change to the `main` branch. Normally it's a better practice to create a new branch for your change and then merge that branch to `main` after review, but for this demo you can commit to the `main` branch directly.
-1. Visit https://cloud.digitalocean.com/apps and navigate to your sample app.
-1. You should see a "Building..." progress indicator, just like when you first created the app.
-1. Once the build completes successfully, click the **Live App** link in the header and you should see your updated application running. You may need to force refresh the page in your browser (e.g. using **Shift+Reload**).
+- `gatsby` config for global configuration like 
+    - `pathPrefix` - Gatsby Path Prefix
+    - `siteUrl` - Gatsby Site URL
+    - `gaTrackingId` - Google Analytics Tracking ID
 
-### Learn More
+- `header` config for site header configuration like
+    - `title` - The title that appears on the top left
+    - `githubUrl` - The Github URL for the docs website
+    - `helpUrl` - Help URL for pointing to resources
+    - `tweetText` - Tweet text
+    - `links` - Links on the top right
+    - `search` - Enable search and [configure Algolia](https://www.gatsbyjs.org/docs/adding-search-with-algolia/)
 
-You can learn more about the App Platform and how to manage and update your application at https://www.digitalocean.com/docs/app-platform/.
+- `sidebar` config for navigation links configuration
+    - `forcedNavOrder` for left sidebar navigation order. It should be in the format "/\<filename>"
+    - `frontLine` - whether to show a front line at the beginning of a nested menu.(Collapsing capability would be turned of if this option is set to true)
+    - `links` - Links on the bottom left of the sidebar
+    - `ignoreIndex` - Set this to true if the index.md file shouldn't appear on the left sidebar navigation. Typically this can be used for landing pages.
 
-## Deleting the App
+- `siteMetadata` config for website related configuration
+    - `title` - Title of the website
+    - `description` - Description of the website
+    - `ogImage` - Social Media share og:image tag
+    - `docsLocation` - The Github URL for Edit on Github
 
-When you no longer need this sample application running live, you can delete it by following these steps:
-1. Visit the Apps control panel at https://cloud.digitalocean.com/apps.
-2. Navigate to the sample app.
-3. In the **Settings** tab, click **Destroy**.
+- For sub nesting in left sidebar, create a folder with the same name as the top level `.md` filename and the sub navigation is auto-generated. The sub navigation is alphabetically ordered.
 
-**Note: If you do not delete your app, charges for using DigitalOcean services will continue to accrue.**
+### Algolia Configuration
+
+To setup Algolia, go to `config.js` and update the `search` object to look like the one below:
+
+```...,
+	"search": {
+		"enabled": true,
+		"indexName": "MY_INDEX_NAME",
+		"algoliaAppId": process.env.GATSBY_ALGOLIA_APP_ID,
+		"algoliaSearchKey": process.env.GATSBY_ALGOLIA_SEARCH_KEY,
+		"algoliaAdminKey": process.env.ALGOLIA_ADMIN_KEY
+	},
+```
+
+Values for Algolia App ID, Search Key, and Admin Key can be obtained from Algolia Dashboard with the right set of permissions. Replace `MY_INDEX_NAME` with the Algolia Index name of your choice. To build the Algolia index, you need to run `npm run build` which will do a gatsby build along with content indexing in Algolia.
+
+### Progressive Web App, Offline
+
+To enable PWA, go to `config.js` and update the `pwa` object to look like the one below:
+
+```
+   "pwa": {
+        "enabled": false, // disabling this will also remove the existing service worker.
+        "manifest": {
+            "name": "Gatsby Gitbook Starter",
+            "short_name": "GitbookStarter",
+            "start_url": "/",
+            "background_color": "#6b37bf",
+            "theme_color": "#6b37bf",
+            "display": "standalone",
+            "crossOrigin": "use-credentials",
+            icons: [
+                {
+                    src: "src/pwa-512.png",
+                    sizes: `512x512`,
+                    type: `image/png`,
+                },
+            ],
+        },
+    }
+```
+
+## Live Code Editor
+
+To render react components for live editing, add the `react-live=true` to the code section. For example:
+
+```javascript react-live=true
+<button>Edit my text</button>
+```
+
+In the above code, just add `javascript react-live=true` after the triple quote ``` to start rendering react components that can be edited by users.
+
+## 🤖 SEO friendly
+
+This is a static site and comes with all the SEO benefits. Configure meta tags like title and description for each markdown file using MDX Frontmatter
+
+```markdown
+---
+title: "Title of the page"
+metaTitle: "Meta Title Tag for this page"
+metaDescription: "Meta Description Tag for this page"
+---
+```
+
+Canonical URLs are generated automatically.
+
+## ☁️ Deploy
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/hasura/gatsby-gitbook-starter)
+
